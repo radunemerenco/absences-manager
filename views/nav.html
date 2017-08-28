@@ -1,0 +1,16 @@
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper" class="scroll-body" >
+
+    <ul class="sidebar-nav">
+        <li ng-repeat="(key, item) in menuItems" ng-if="checkPermissions(item,customer.accountType)">
+            <a ng-click="itemClicked(item)"><i class="fa {{item.icon}}"></i> <span>{{item.name}}</span></a>
+            <ul class="children" ng-hide="item.collapse">
+                <li>{{customerInfo}}</li>
+                <li ng-repeat="child in item.children" ng-if="checkPermissions(child,customer.accountType)"><a href="#{{child.link}}"><span class="icon"><i class="fa fa-caret-right icon-user"></i></span> <span>{{child.name}}</span></a></li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+<!-- /#sidebar-wrapper -->

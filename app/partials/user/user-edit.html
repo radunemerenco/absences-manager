@@ -1,0 +1,22 @@
+<enj-panel title="User Edit Form">
+    <form name="userEditForm" class="form-horizontal" role="form">
+
+        <enj-input-text label="Account Type" name="account_type" model="customer.accountType" disabled="true" required="true"></enj-input-text>
+        <enj-input-text label="First Name" name="first_name" model="customer.firstName" required="true"></enj-input-text>
+        <enj-input-text label="Last Name" name="last_name" model="customer.lastName" required="true"></enj-input-text>
+        <enj-input-text label="Phone Number" name="phone" model="customer.phone" required="true"></enj-input-text>
+        <enj-input-text label="Address" name="address" model="customer.address" required="true"></enj-input-text>
+        <enj-input-password label="Current Password" name="current-password" model="customer.currentPassword" required="true"></enj-input-password>
+        <enj-input-password label="Password" name="password" model="customer.password"></enj-input-password>
+        <enj-input-password label="Repeat Password" name="password2" model="customer.password2" password-match="password"></enj-input-password>
+        <small class="errorMessage" data-ng-show="userEditForm.password2.$dirty && userEditForm.password2.$error.required"> Enter password again.</small>
+        <small class="errorMessage" data-ng-show="userEditForm.password2.$dirty && userEditForm.password2.$error.passwordNoMatch && !userEditForm.password2.$error.required"> Password do not match.</small>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+                <button type="submit" class="btn btn-default pull-right" ng-click="submit(customer)">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</enj-panel>

@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right" for="{{name}}">{{label}}</label>
+    <div class="col-sm-7">
+        <span class="input-group">
+            <input type="text" name="{{name}}" class="form-control" ng-model="model" ng-disabled="disabled" ng-required="required" placeholder="{{placeholder}}" focus>
+            <span ng-if="withClearButton" class="btn input-group-addon pointer" ng-click="model=null" ng-disabled="!model"><i class="pull-right glyphicon glyphicon-remove"></i></span>
+        </span>
+    </div>
+</div>

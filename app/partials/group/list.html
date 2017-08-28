@@ -1,0 +1,18 @@
+<enj-panel title="Group List">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Group Name</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody >
+                <tr ng-repeat="(key, item) in model">
+                    <td>{{item.name}}</td>
+                    <td><button type='button' class='btn' ng-click="deleteGroup(item.id,key)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</enj-panel>

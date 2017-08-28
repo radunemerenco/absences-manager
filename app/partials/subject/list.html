@@ -1,0 +1,20 @@
+<enj-panel title="Session List">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Short Name</th>
+                <th>Full Name</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody >
+                <tr ng-repeat="(key, item) in model">
+                    <td>{{item.short_name}}</td>
+                    <td>{{item.full_name}}</td>
+                    <td><button type='button' class='btn' ng-click="deleteSubject(item.id,key)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</enj-panel>

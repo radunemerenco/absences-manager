@@ -1,0 +1,25 @@
+<enj-panel ng-if="session" title="Session Info">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Group</th>
+                <th>Student Number</th>
+                <th>Student Name</th>
+                <th>Absent</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="(key, val) in groups">
+            <tr ng-repeat="(stId,student) in groups[key]">
+                <td ng-if="!stId" rowspan="{{groups[key].length}}">{{student.group_name}}</td>
+                <td>{{student.card_number}}</td>
+                <td>{{student.first_name}} {{student.last_name}}</td>
+                <td>
+                    <absence-button model="student.absence_id" student-id="student.id_student"
+                                    session-id="session.sessionIndex" session-date="session.date"></absence-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</enj-panel>

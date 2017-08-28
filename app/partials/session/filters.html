@@ -1,0 +1,35 @@
+<accordion close-others="true">
+    <accordion-group is-open="accordion.open">
+        <accordion-heading>
+            Filters <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordion.open, 'glyphicon-chevron-right': !accordion.open}"></i>
+        </accordion-heading>
+        <form name="filtersForm" class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="date-range">Date Range</label>
+                <div class="col-sm-7">
+                    <div date-range start="filtersObj.datePicker.from" end="filtersObj.datePicker.to" today-by-default="true" difference-days="-11" style="position: relative; z-index:0;  display: flex;"></div>
+
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn btn-danger" ng-click="a=null;b=null">
+                            {{(filtersObj.datePicker.from|date:'yyyy-MM-dd')||"pick start"}} - {{(filtersObj.datePicker.to|date:'yyyy-MM-dd')||"pick end"}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <enj-select label="Time" name="time" options="times" value="id" pattern="time_start&&-&&time_end" model="filtersObj.time" with-clear-button="true"></enj-select>
+            <enj-select label="Subject" name="subject" options="subjects" value="id" pattern="(&&short_name&&) &&full_name" model="filtersObj.subject" with-clear-button="true"></enj-select>
+            <enj-select ng-if="isAdmin" label="Teacher" name="teacher" options="teachers" value="id" pattern="first_name&& &&last_name" model="filtersObj.teacher" with-clear-button="true"></enj-select>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="groups">Groups</label>
+                <div class="col-sm-7">
+                    <span class="input-icon">
+                        <div auto-complete url="/api/v1/getGroups" model="filtersObj.groups"></div>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </accordion-group>
+</accordion>

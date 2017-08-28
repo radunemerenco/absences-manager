@@ -1,0 +1,153 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand">Color filters:</div>
+		</div>
+		<div id="navbar" class="">
+			<div class="form-inline form-filters" role="form">
+				<div class="form-group activityFilter">
+                    <div class="btn-group">
+                        <label ng-repeat="filter in activityFilters" for="{{filter.name}}" class="btn btn-{{filter.color}}">
+                            {{filter.name}}
+                            <input type="radio"
+                                ng-model="me.filter"
+					            ng-value="filter.color"
+					            ng-change="updateFilter(me.filter)"
+					            id="{{filter.name}}"
+					            name="favorite"
+					            class="hidden">
+					    </label>
+					</div>
+				</div>
+				<div class="form-group activitySelect">
+					<div class="input-group">
+						<span class="input-group-addon btn-{{me.filter}}"></span>
+						<select class="form-control no-shadow" id="activity" name="activity" ng-change="activityChanged(me.activityId)" ng-model="me.activityId">
+	                        <option ng-repeat="act in activities" value="{{act.id}}" ng-value="act.id">
+	                            {{act.name}}
+	                        </option>
+	                        <option value="0" class="hidden"><i>No activity available</i></option>
+	                    </select>
+					</div>
+                    <!-- select class="form-control" id="activity" name="activity" ng-model="activity">
+                        <option ng-repeat="act in activities" value="{{act.name}}">
+                            {{act.name}}</option>
+                    </select-->
+				</div>
+			</div>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+</nav>
+<!-- Begin page content -->
+<div class="container-fluid page-content padding-0">
+	<div class="input-group"> <span class="input-group-addon">Filter</span>
+	    <input id="documentFilter" type="text" class="form-control" ng-model="search.docName" placeholder="Document name...">
+	</div>
+    <div class="table-responsive">
+        <table class="documents-table table table-condensed table-hover table-striped">
+            <!-- 
+            <tr class="active">
+                <td class="success">...</td>
+            </tr> 
+            -->
+            <thead>
+	            <tr>
+	                <th>Document Name</th>
+	                <th>Progress</th>
+	                <th>Issue Reason</th>
+	                <th>Discipline</th>
+	                <th>Status</th>
+	            </tr>
+		    </thead>
+		    <tbody class="searchable noSelect">
+	            <tr class='pointer' ng-repeat="doc in documents | filter:search:strict" ng-dblclick="documentDblClick(doc.id)">
+	                <td>{{doc.docName}}</td>
+	                <td>
+						<div class="progress">
+							
+							<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{doc.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{doc.progress}}%;"></div>
+                            
+                             <span class="percents">{{doc.progress}}%</span>
+                        </div>
+	                </td>
+	                <td>{{doc.issueReason}}</td>
+	                <td>{{doc.discipline}}</td>
+	                <td>{{doc.status}}</td>
+	            </tr>
+        </table>
+        <p ng-show="documents.length == 0">No documents.{{documents.length}}</p>
+	</div>
+	<div class="spinner" ng-show="loading">Loading...</div>
+	<!-- 
+    <pre>{{me.activityId}}</pre>
+    <pre>{{allActivities | json}}</pre>
+    <pre>{{documents | json}}</pre>
+      -->
+      
+</div>
+
+<!-- <div context-menu class="panel panel-default position-fixed"
+     data-target="menu-{{ $index }}"
+     ng-class="{ 'highlight': highlight, 'expanded' : expanded }">
+  ...
+</div> -->
+<footer class="footer">
+	<div class="container-fluid">
+        <p class="text-muted">
+            <div class="activity-info">
+                <span class="bar-title pull-left">Activity Info: </span>
+	            <ul class="nav nav-list">
+                    <li><span><label>Status:</label> {{me.activity.status}}</span></li>
+                    <li><span><label>Progress:</label> {{me.activity.progress}}%</span></li>
+                    <li><span><label>Date start:</label> {{ getDate(me.activity.actualDateStart) }}</span></li>
+                    <li><span><label>Date end:</label> {{ getDate(me.activity.actualDateEnd) }}</span></li>
+                    <li><span><label>Forecast date end:</label> {{ getDate(me.activity.plannedDateEnd) }}</span></li>
+	            </ul>
+            </div>
+        </p>
+	</div>
+</footer>
+
+<div class="dropdown position-fixed" id="menu-{{ $index }}">
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a class="pointer" role="menuitem" tabindex="1"
+         ng-click="panel.highlight = true">
+         Select Panel {{ $index + 1 }}
+      </a>
+    </li>
+    <li>
+      <a class="pointer" role="menuitem" tabindex="2"
+         ng-click="panel.highlight = false">
+         Deselect Panel  {{ $index + 1 }}
+      </a>
+    </li>
+    <li>
+      <a class="pointer" role="menuitem" tabindex="3"
+         ng-click="panel.expanded = true">
+         Expand Panel {{ $index + 1 }}
+      </a>
+    </li>
+    <li>
+      <a class="pointer" role="menuitem" tabindex="4"
+         ng-click="panel.expanded = false">
+         Contract Panel {{ $index + 1 }}
+      </a>
+    </li>
+    <li>
+      <a class="pointer" role="menuitem" tabindex="5"
+         ng-click="addPanel()">
+         Add a panel
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/ianwalter/ng-context-menu"
+         role="menuitem"
+         tabindex="-1">
+         ng-context-menu on GitHub
+      </a>
+    </li>
+  </ul>
+</div>

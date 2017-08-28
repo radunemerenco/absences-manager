@@ -1,0 +1,14 @@
+<enj-panel title="Create New Group">
+
+    <form name="groupCreateForm" class="form-horizontal" role="form">
+
+        <enj-input-text label="Short Name" name="short_name" model="shortName" required="true"></enj-input-text>
+        <enj-input-text label="Full Name" name="full_name" model="fullName" required="true"></enj-input-text>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+                <button type="submit" class="btn btn-default pull-right" ng-click="submit(shortName,fullName)">Submit</button>
+            </div>
+        </div>
+    </form>
+</enj-panel>

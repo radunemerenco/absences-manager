@@ -1,0 +1,33 @@
+\<enj-panel title="Manage Users">
+    <!--<enj-select label="Select Account Type" name="account-type" options="accountTypes" value="id" pattern="label" model="filtersObj.accountType" with-clear-button="true"></enj-select>-->
+    <div class="container-fluid col-md-12" style="padding-top:15px;">
+        <div class="table-responsive ">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Card Number</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Account Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in usersList" ng-click="" ng-class="{'bg-success':isActive(session.session_id,session.date)}">
+                    <td>{{user.card_number}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <enj-buttons-checkbox ng-if="user.accType != 'Admin'" class="btn-group" data-toggle="buttons-radio"
+                                              model='user.accType'
+                                              options='["student", "teacher", "admin"]'
+                                              ng-click='changePermissions(user,clicked)'
+                                              clicked-option="clicked">
+                        </enj-buttons-checkbox>
+                        <select ng-if="user.accType['student']" ng-change="setGroup(user)" class="form-control" ng-options="item.id as item.name for item in groups" ng-model="user.id_group" ng-required="true"  focus></select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</enj-panel>

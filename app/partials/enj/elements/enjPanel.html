@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+    <div ng-if="title" class="panel-heading">
+        <strong>
+            <i ng-class="[titleIcon, {'glyphicon glyphicon-th': !titleIcon.length}]"></i>
+            <span>{{title}}</span>
+        </strong>
+    </div>
+    <div class="panel-body">
+        <ng-transclude></ng-transclude>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div enj-panel>
+    <h4 class="header blue lighter bigger">
+        <i class="icon-coffee green"></i>
+        User Authenticated
+    </h4>
+    <div class="space-16"></div>
+    <label>ID:</label> {{customer.id}}
+    <br/><label>NAME:</label> {{customer.firstName}} {{customer.lastName}}
+    <br/><label>E-MAIL:</label> {{customer.email}}
+    <br/><label>User Type:</label> {{customer.accountType}}
+    <br/>
+    <a ng-click="logout();">Logout</a>
+</div>

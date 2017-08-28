@@ -1,0 +1,37 @@
+<enj-panel title="Absences Audit">
+    <flot callback="callbackFunc" dataset="dataset" options="options" height="320px" width="100%" plot-obj="plotObj"></flot>
+</enj-panel>
+<div class="row">
+    <div class="col-lg-3 col-xsm-6">
+        <enj-mini-box label="Absences Rate" icon="fa-rocket" value="{{absencesRate}}" currency="%" background="bg-success"></enj-mini-box>
+    </div>
+    <div class="col-lg-3 col-xsm-6">
+        <enj-mini-box label="Total Absences" icon="fa-users" value="{{totalAbsences}}" background="bg-info"></enj-mini-box>
+    </div>
+    <div class="col-lg-3 col-xsm-6">
+        <enj-mini-box label="Total Amount" icon="fa-dollar" value="{{totalAmount}}" currency="{{paymentCurrency|uppercase}}" background="bg-warning"></enj-mini-box>
+    </div>
+    <div class="col-lg-3 col-xsm-6">
+        <enj-mini-box label="Most Absent" icon="fa-bolt" value="{{mostAbsent.shortName}}" background="bg-danger"></enj-mini-box>
+    </div>
+</div>
+<enj-panel title="Absences Statistic">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Session Name</th>
+                <th>Absences</th>
+                <th>Total Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="absence in absencesBySubject" ng-class="{'bg-success':isActive(session.session_id,session.date)}">
+                <td>{{absence.shortName}}</td>
+                <td>{{absence.absences}}</td>
+                <td>{{absence.absences*paymentRate}} {{paymentCurrency}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</enj-panel>

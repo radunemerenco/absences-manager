@@ -1,0 +1,24 @@
+<enj-panel title="Create New Session">
+
+    <form name="sessionCreateForm" class="form-horizontal" role="form">
+
+        <enj-select label="Day" name="day" options="days" value="id" pattern="name" model="sessionObj.day" with-clear-button="true" required="true"></enj-select>
+        <enj-select label="Time" name="time" options="times" value="id" pattern="time_start&&-&&time_end" model="sessionObj.time" with-clear-button="true" required="true"></enj-select>
+        <enj-select label="Subject" name="subject" options="subjects" value="id" pattern="(&&short_name&&) &&full_name" model="sessionObj.subject" with-clear-button="true" required="true"></enj-select>
+        <enj-select label="Teacher" name="teacher" options="teachers" value="id" pattern="first_name&& &&last_name" model="sessionObj.teacher" with-clear-button="true" required="true"></enj-select>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="groups">Groups</label>
+            <div class="col-sm-7">
+                    <span class="input-icon">
+                        <div auto-complete url="/api/v1/getGroups" model="sessionObj.groups"></div>
+                    </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+                <button type="submit" ng-disabled="sessionCreateForm.$invalid || !sessionObj.groups.length" class="btn btn-default pull-right" ng-click="submit(sessionObj)">Submit</button>
+            </div>
+        </div>
+    </form>
+</enj-panel>

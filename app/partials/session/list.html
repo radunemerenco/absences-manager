@@ -1,0 +1,31 @@
+<accordion ng-if="sessions">
+    <accordion-group is-open="accordion.open">
+        <accordion-heading>
+            Session List <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordion.open, 'glyphicon-chevron-right': !accordion.open}"></i>
+        </accordion-heading>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Hour</th>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Groups</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="session in sessions | orderBy:['date','time_start','subject_short_name']" ng-click="sessionClick(session.session_id,session.date)" ng-class="{'bg-success':isActive(session.session_id,session.date)}">
+                    <td>{{session.day_name}}</td>
+                    <td>{{session.date}}</td>
+                    <td>{{session.time_start}}-{{session.time_end}}</td>
+                    <td> <span tooltip-placement="top" tooltip="{{session.subject_full_name}}">{{session.subject_short_name}}</span></td>
+                    <td>{{session.first_name}} {{session.last_name}}</td>
+                    <td>{{session.gr_name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </accordion-group>
+</accordion>
